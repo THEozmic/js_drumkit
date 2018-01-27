@@ -1,128 +1,223 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>DrumKit</title>
-</head>
-<body>
-  <div class="container">
-    <div class="keys">
-      <div data-key="65" class="key">
-        <div class="text">A</div>
-        <div class="name">CLAP</div>
-      </div>
-      <div data-key="83" class="key">
-        <div class="text">S</div>
-        <div class="name">HIHAT</div>
-      </div>
-      <div data-key="68" class="key">
-        <div class="text">D</div>
-        <div class="name">KICK</div>
-      </div>
-      <div data-key="70" class="key">
-        <div class="text">F</div>
-        <div class="name">OPENHAT</div>
-      </div>
-      <div data-key="71" class="key">
-        <div class="text">G</div>
-        <div class="name">BOOM</div>
-      </div>
-      <div data-key="72" class="key">
-        <div class="text">H</div>
-        <div class="name">RIDE</div>
-      </div>
-      <div data-key="74" class="key">
-        <div class="text">J</div>
-        <div class="name">SNARE</div>
-      </div>
-      <div data-key="75" class="key">
-        <div class="text">K</div>
-        <div class="name">TOM</div>
-      </div>
-      <div data-key="76" class="key">
-        <div class="text">L</div>
-        <div class="name">TINK</div>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>DrumKit</title>
+  </head>
+  <body>
+    <div class="container">
+      <div class="keys">
+        <div data-key="65" class="key">
+          <div class="text">A</div>
+          <div class="name">CLAP</div>
+        </div>
+        <div data-key="83" class="key">
+          <div class="text">S</div>
+          <div class="name">HIHAT</div>
+        </div>
+        <div data-key="68" class="key">
+          <div class="text">D</div>
+          <div class="name">KICK</div>
+        </div>
+        <div data-key="70" class="key">
+          <div class="text">F</div>
+          <div class="name">OPENHAT</div>
+        </div>
+        <div data-key="71" class="key">
+          <div class="text">G</div>
+          <div class="name">BOOM</div>
+        </div>
+        <div data-key="72" class="key">
+          <div class="text">H</div>
+          <div class="name">RIDE</div>
+        </div>
+        <div data-key="74" class="key">
+          <div class="text">J</div>
+          <div class="name">SNARE</div>
+        </div>
+        <div data-key="75" class="key">
+          <div class="text">K</div>
+          <div class="name">TOM</div>
+        </div>
+        <div data-key="76" class="key">
+          <div class="text">L</div>
+          <div class="name">TINK</div>
+        </div>
       </div>
     </div>
-  </div>
 
-  <div class="info"> Press appropriate keys to play sound :)</div>
+    <div class="info"> Press appropriate keys to play sound :)</div>
+    <button onclick="startRecording()" class="record">Start Recording</button>
+    <button onclick="stopRecording()" class="stop">Stop Recording</button>
+    <button onclick="playRecord()" class="play">Play Recording</button>
 
-  <audio data-key="65" src="clap.wav"></audio>
-  <audio data-key="83" src="hihat.wav"></audio>
-  <audio data-key="68" src="kick.wav"></audio>
-  <audio data-key="70" src="openhat.wav"></audio>
-  <audio data-key="71" src="boom.wav"></audio>
-  <audio data-key="72" src="ride.wav"></audio>
-  <audio data-key="74" src="snare.wav"></audio>
-  <audio data-key="75" src="tom.wav"></audio>
-  <audio data-key="76" src="tink.wav"></audio>
+    <audio data-key="65" src="clap.wav"></audio>
+    <audio data-key="83" src="hihat.wav"></audio>
+    <audio data-key="68" src="kick.wav"></audio>
+    <audio data-key="70" src="openhat.wav"></audio>
+    <audio data-key="71" src="boom.wav"></audio>
+    <audio data-key="72" src="ride.wav"></audio>
+    <audio data-key="74" src="snare.wav"></audio>
+    <audio data-key="75" src="tom.wav"></audio>
+    <audio data-key="76" src="tink.wav"></audio>
 
-  <style>
-    body {
-      background-image: url('background.jpg');
-      text-align: center;
-    }
+    <style>
+      body {
+        background-image: url('background.jpg');
+        text-align: center;
+      }
 
-    .container {
-      display: inline-block;
-      margin: 50px;
-    }
+      .container {
+        display: inline-block;
+        margin: 50px;
+      }
 
-    .keys {
-      display:  grid;
-      grid-template-columns: 100px 100px 100px;
-      grid-gap: 20px;
-    }
+      .keys {
+        display:  grid;
+        grid-template-columns: 100px 100px 100px;
+        grid-gap: 20px;
+      }
 
-    .key {
-      background-color: #0a0315;
-      border-radius: 3px;
-      color: #ffe821;
-      font-family:  sans-serif;
-      text-align:  center;
-      padding:  10px;
-      border: 3px solid black;
-      cursor: pointer;
-      transition: all 0.2s;
-    }
+      .key {
+        background-color: #0a0315;
+        border-radius: 3px;
+        color: #ffe821;
+        font-family:  sans-serif;
+        text-align:  center;
+        padding:  10px;
+        border: 3px solid black;
+        cursor: pointer;
+        transition: all 0.2s;
+      }
 
-    .playing {
-      box-shadow: 0px 0px 2px 2px #937614;
-      transform: scale(1.1);
-    }
+      .playing {
+        box-shadow: 0px 0px 2px 2px #937614;
+        transform: scale(1.1);
+      }
 
-    .info {
-      color: yellow;
-      font-family: sans-serif;
-      text-align: center;
-      text-shadow: 1px 0px black;
-    }
+      .info {
+        color: yellow;
+        font-family: sans-serif;
+        text-align: center;
+        text-shadow: 1px 0px black;
+      }
 
-    .text {
-      font-size: 23px;
-      color: #faf7ffb3;
-      text-shadow: 1px 0px yellow;
-    }
-  </style>
-  <script>
-    function playSound(e) {
-      audio = document.querySelector(`audio[data-key="${e.keyCode}"]`)
-      key = document.querySelector(`.key[data-key="${e.keyCode}"]`)
-      if (!audio) return;
-      audio.currentTime = 0
-      audio.play()
-      key.classList.add('playing')
-    }
-    function removeTransition(e) {
-      if (e.propertyName !== 'transform') return
-      this.classList.remove('playing')
-    }
-    key = document.querySelectorAll('.key');
-    key.forEach((key) => key.addEventListener('transitionend', removeTransition))
-    window.addEventListener('keydown', playSound)
-  </script>
-</body>
+      .text {
+        font-size: 23px;
+        color: #faf7ffb3;
+        text-shadow: 1px 0px yellow;
+      }
+
+      button {
+        background-color: grey;
+        border: 1px solid;
+        padding: 5px;
+        border-radius: 3px;
+        color: #fff;
+        margin-top: 10px;
+        margin-right: 10px;
+        font-weight: bolder;
+        cursor: pointer;
+      }
+
+      .record {
+        color: #FF5722;
+        background-color: #844856;
+      }
+
+      .stop {
+        background-color: #488473;
+        color: #4cf422;
+      }
+
+      .play {
+        color: #ffe51c;
+        background-color: #635c33;
+      }
+    </style>
+    <script>
+      let keyCodes = [];
+      let keyTime = [];
+      let interval;
+      let timePlayed;
+      let toRecord = false;
+
+      function playSound(e) {
+        audio = document.querySelector(`audio[data-key="${e.keyCode}"]`);
+        key = document.querySelector(`.key[data-key="${e.keyCode}"]`);
+        if (!audio) return;
+        audio.currentTime = 0;
+        audio.play();
+        key.classList.add('playing');
+
+        if (toRecord) {
+          timeEnded = new Date();
+          timeEnded = timeEnded.getTime();
+          timeInBetween = timeEnded - timePlayed;
+          keyTime.push(timeInBetween + keyTime[keyTime.length-1] || 0);
+          keyCodes.push(e.keyCode);
+          timePlayed = new Date();
+          timePlayed = timePlayed.getTime();
+        }
+      }
+
+      function removeTransition(e) {
+        if (e.propertyName !== 'transform') return;
+        this.classList.remove('playing');
+      }
+
+      key = document.querySelectorAll('.key');
+      key.forEach((key) => key.addEventListener('transitionend', removeTransition));
+      window.addEventListener('keydown', playSound);
+
+      function playRecord () {
+        if (!toRecord) {
+          if (keyCodes.length === 0) {
+            alert("You must record something first.");
+            return;
+          }
+
+          document.querySelector(".play").innerHTML = "Playing...";
+
+          for(i = 0; i <= keyCodes.length; i++) {
+            (function(i){
+              setTimeout(function() {
+                playSound({ keyCode: keyCodes[i] });
+                if (i + 1 === keyCodes.length) {
+                  document.querySelector(".play").innerHTML = "Play Recording";
+                }
+              }, keyTime[i]);
+            }(i));
+          }
+        } else {
+          alert("Please stop recording first.");
+        }
+      }
+
+      function startRecording() {
+        continueStart = true;
+        if(toRecord) {
+          continueStart = confirm("You are about to lose your previous recording. Continue?");
+        }
+
+        if (continueStart) {
+          keyCodes = []
+          keyTime = []
+          toRecord = true;
+          document.querySelector('.record').innerHTML = "Recording...";
+        }
+      }
+
+      function stopRecording() {
+        if (!toRecord) {
+          alert("You must be recording first.");
+        } else {
+          toRecord = false;
+          document.querySelector('.record').innerHTML = "Start Recording";
+        }
+      }
+    </script>
+  </body>
 </html>
